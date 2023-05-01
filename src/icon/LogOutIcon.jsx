@@ -1,15 +1,21 @@
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React from "react";
+import {useDispatch} from "react-redux";
+import {setAuth} from "../store/userSlice";
 
 export const LogOutIcon = ({ width }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
-    <Link to="/Login"
-    onClick={
-      ()=>{
-        localStorage.clear()
-      }
-    }
+    <button
+        onClick={
+          ()=>{
+            localStorage.clear()
+            dispatch(setAuth(false))
+            navigate("/login");
+          }
+        }
     >
       <svg
         version="1.0"
@@ -32,7 +38,7 @@ export const LogOutIcon = ({ width }) => {
 -7 60 26 l34 35 -34 35 c-31 32 -60 46 -60 28z" />
         </g>
       </svg>
-    </Link>
+    </button>
   );
 };
 

@@ -39,8 +39,8 @@ export const UserPage = () => {
   const token =localStorage.getItem('token');
 
 
-  const payload = JSON.parse(atob(token.split(".")[1])) ;
-  const userId = payload.userId ;
+  const payload = token ? JSON.parse(atob(token.split(".")[1])) : '';
+  const userId = token ? payload.userId : '';
 
 
   const [createActive, setCreateActive] = useState(false);
@@ -68,7 +68,7 @@ export const UserPage = () => {
         navigate("/login");
       }
     },
-    [dispatch, navigate, user ,token]
+    [token]
   );
 
   return (
