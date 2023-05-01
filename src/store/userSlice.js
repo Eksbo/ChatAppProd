@@ -2,18 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "./api";
 
 export const loginUser = createAsyncThunk(
-  "users/loginUser",
-  async ({ email, password }) => {
-    const response = await api.post(`/users/login`, {
-      email: email,
-      password: password,
-    });
-    const { data } = response;
-    localStorage.setItem("token", `${data.token}`);
-    console.log(localStorage['token']);
-    return data;
-  }
+    "users/loginUser",
+    async ({ email, password }) => {
+        const response = await api.post(`/users/login`, {
+            email: email,
+            password: password,
+        });
+        const { data } = response;
+        localStorage.setItem("token", `${data.token}`);
+        console.log(localStorage['token']);
+
+        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        return data;
+    }
 );
+
 export const registerUser = createAsyncThunk(
   "users/registerUser",
   async ({ email, password, username }) => {

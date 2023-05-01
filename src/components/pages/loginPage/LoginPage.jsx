@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "../../../icon/Logo";
 // import { PasswordInput } from "@skbkontur/react-ui";
@@ -14,29 +14,31 @@ import {
   Form,
 
 } from "./loginPageComponents";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { loginUser } from "../../../store/userSlice";
 import { FormField } from "../../elementInput/FormField";
 
 export const LoginPage = () => {
-  localStorage.clear();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [err, setErr] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuth = useSelector(state => state.users.isAuth);
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     try {
-      await dispatch(loginUser({ email, password }));
-
-      if (await localStorage["token"]) {
-        console.log(localStorage["token"]);
-        return navigate("/user");
-      }
+      dispatch(loginUser({ email, password }))
     } catch (error) {
       setErr(error);
     }}
+
+    useEffect(() => {
+        if (isAuth) {
+            navigate("/user")
+        }
+    }, [isAuth]);
+
   return (
     <Body>
       <LoginBody>
