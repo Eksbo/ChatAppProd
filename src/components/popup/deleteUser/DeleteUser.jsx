@@ -10,9 +10,25 @@ import {
     BlockButton
 }from "./deleteUserComponent"
 import { useDispatch } from "react-redux";
-export const DeleteUser = ({active,id,setActive}) => {
+export const DeleteUser = ({active,setActive}) => {
+    const token =localStorage.getItem('token');
+    const id = JSON.parse(atob(token.split(".")[1])).userId;
+
     const navigate=useNavigate()
   const  dispatch=useDispatch()
+  const handleDelete = (id) => {
+    dispatch(deleteUser(id))
+      .then((data) => {
+        console.log(data);
+        navigate('/login');
+
+      })
+      .catch((error) => {
+        console.log(error);
+
+      });
+  }
+  
   return (
     <Modal className={active ? "active" : ""}>
         <ModalContent>
@@ -24,13 +40,15 @@ also be deleted.
 <BlockButton>
     <ButtonBackDeleteUser
     onClick={()=>{
+
         setActive(false)
     }}
     >Back</ButtonBackDeleteUser>
     <ButtonDeleteUser
     onClick={()=>{
-        dispatch(deleteUser({id}))
-        navigate('/login')
+        handleDelete(id)
+        // dispatch(deleteUser(id))
+        // navigate('/login')
     }}
     >Delete</ButtonDeleteUser>
 </BlockButton>

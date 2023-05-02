@@ -12,12 +12,12 @@ import {
     ButtonUserRegister,
     ErrBlock,
 } from "./registerPageComponent";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {loginUser, registerUser} from "../../../store/userSlice";
 
 export const RegisterPage = () => {
     // const user = useSelector(state => state.users.user);
-    const error = useSelector(state => state.users.error);
+    // const error = useSelector(state => state.users.error);
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
