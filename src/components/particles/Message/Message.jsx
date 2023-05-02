@@ -1,10 +1,35 @@
-import React from 'react';
-import {useFormattedDate} from "../../../hooks/useFormattedDate";
 
 import "./Message.scss";
+import {useFormattedDate} from "../../../hooks/useFormattedDate";
 
-const Message = ({isAdmin, message, author, createdAt, isSelf}) => {
-    const date = useFormattedDate(createdAt)
+const Message = ({ isAdmin, message, author, createdAt, filePath, isSelf }) => {
+    const date = useFormattedDate(createdAt);
+    const token = localStorage.getItem('token');
+
+    const downloadFile = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/download?fileName=${filePath}`, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filePath.split('-')[1];
+            link.click();
+            URL.revokeObjectURL(url);
+        } catch (e) {
+            throw e
+        }
+
+    }
+
+
 
     if (isAdmin) {
         return (
@@ -26,6 +51,8 @@ const Message = ({isAdmin, message, author, createdAt, isSelf}) => {
 
             <div className="message__body">
                 <p>{message}</p>
+
+                {filePath && <span>File: <a href={`${process.env.REACT_APP_API_URL}${filePath}`} onClick={downloadFile}>{filePath.split('-')[1]}</a></span> }
             </div>
         </div>
     );

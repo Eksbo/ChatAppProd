@@ -1,4 +1,17 @@
 .chat {
+  &__top {
+    padding: 10px;
+    margin-top: -3vh;
+    margin-bottom: 5px;
+    border: 2px dashed lightgreen;
+
+    border-radius: 10px;
+
+    h2 {
+      margin: 0 0 20px 0;
+    }
+  }
+
   &__body {
     display: flex;
     flex-direction: column;
@@ -8,6 +21,19 @@
     overflow-y: auto;
 
     scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color:  rgb(40, 151, 151);
+    }
   }
 
   &__tools {
@@ -55,6 +81,20 @@
 
     &:hover {
       transform: scale(1.05);
+    }
+  }
+
+  &__attach {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  &__file {
+    input[type="file"] {
+      display: none;
     }
   }
 }
