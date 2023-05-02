@@ -6,9 +6,10 @@
   max-width: 60%;
   margin-bottom: 20px;
 
-  //&_self {
-  //  align-self: flex-start;
-  //}
+  &_self {
+    align-self: flex-start;
+    align-items: flex-start;
+  }
 
   &_admin {
     .message__body {
@@ -40,7 +41,23 @@
     border: 2px solid lightgreen;
 
     > p {
+      font-size: 17px;
       margin: 0;
+    }
+
+    span {
+      display: block;
+      margin-top: 10px;
+      padding-top: 5px;
+      border-top: 1px dashed white;
+
+      font-size: 13px;
+
+      a {
+        font-weight: bold;
+
+        color: antiquewhite;
+      }
     }
   }
 }
