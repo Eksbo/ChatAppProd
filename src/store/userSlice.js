@@ -63,8 +63,9 @@ export const getUser = createAsyncThunk("users/getUser", async (id) => {
 
 export const deleteUser = createAsyncThunk(
   "users/deleteUser",
-  async (userId) => {
-    const response = await api.delete(`/users/${userId}`);
+  async (id) => {
+
+    const response = await api.delete(`/users/${id}`);
     const { data } = response;
     console.log(data);
     return data;
