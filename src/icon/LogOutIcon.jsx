@@ -1,4 +1,4 @@
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import React from "react";
 import {useDispatch} from "react-redux";
 import {setAuth} from "../store/userSlice";
@@ -9,6 +9,14 @@ export const LogOutIcon = ({ width }) => {
 
   return (
     <button
+    style={
+      {
+        position:"absolute",
+        right:'11%',
+        border:'none',
+        backgroundColor:'rgb(40, 151, 151)'
+      }
+    }
         onClick={
           ()=>{
             localStorage.clear()
@@ -23,11 +31,12 @@ export const LogOutIcon = ({ width }) => {
         width={`${width}`}
         height={`${width * 1.5}`}
         viewBox="0 0 48.000000 48.000000"
-        preserveAspectRatio="xMidYMid meet"
+        // preserveAspectRatio="xMidYMid meet"
       >
         <g
           transform="translate(0.000000,48.000000) scale(0.100000,-0.100000)"
           fill="#fff"
+
           stroke="none"
         >
           <path d="M90 240 l0 -211 148 3 147 3 3 48 c2 37 0 47 -12 47 -12 0 -16 -10

@@ -35,7 +35,7 @@ export const UserPage = () => {
   const usersPublic = useSelector(state => state.rooms.public);
   const userTest = useSelector(state => state.users.editUser);
 
-  const user = useSelector(state => state.users.user);
+  // const user = useSelector(state => state.users.user);
   const token =localStorage.getItem('token');
 
 
