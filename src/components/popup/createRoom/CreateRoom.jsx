@@ -45,7 +45,7 @@ export const CreateRoom = ({ active, setActive }) => {
           <FormField
             type={"textarea"}
             value={body}
-            label="Description (optional)e"
+            label="Description (optional)"
             cbFunc={event => setBody(event.target.value)}
           />
  <ErrBlock>{value}</ErrBlock>

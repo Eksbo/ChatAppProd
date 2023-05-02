@@ -42,7 +42,7 @@ export const BlockPasswordStyle = styled.div`
   align-items: center;
 `;
 export const DescriptionRoom = styled.textarea`
-  width: 80%;
+  width: 84%;
   height: 200px;
   font-size: 24px;
   font-weight: 600;

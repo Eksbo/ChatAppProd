@@ -82,18 +82,20 @@ export const ButtonSettingUser = styled.button`
 
 border: 1px solid white;
 border-radius: 8px;
-
+position :absolute;
+right:16%;
   color: white;
   text-align: center;
   background-color: rgb(40, 151, 151);
   height: 40px;
-  width: 10%;
+width: 13%;
+max-width: 20%;
   cursor: pointer;
   border-radius: 8px;
   font-size: 24px;
   padding: 8px;
-  margin-left: 400px;
-  margin-right:32px;
+
+
   display: flex;
   justify-content: space-between;
   align-items: center;

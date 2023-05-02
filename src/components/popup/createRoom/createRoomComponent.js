@@ -22,7 +22,7 @@ export const InputCreateRoom = styled.input`
   padding-left: 16px;
 `;
 export const BodyCreateRoom = styled.textarea`
-  width: 80%;
+  width: 85%;
   height: 200px;
   font-size: 24px;
   font-weight: 600;
@@ -35,7 +35,7 @@ export const SubmitCreateRoom = styled.input`
   text-align: center;
   background-color: rgb(40, 151, 151);
   height: 40px;
-  width: 70%;
+  width: 80%;
   cursor: pointer;
   border-radius: 8px;
   font-size: 24px;
@@ -55,9 +55,9 @@ export const BackCreateRoom = styled.button`
   color: white;
   text-align: center;
   background-color: rgb(40, 151, 151);
-  margin-left:15%;
+ margin-left:10%;
   height: 40px;
-  width: 70%;
+  width: 80%;
   cursor: pointer;
   border-radius: 8px;
   font-size: 24px;

@@ -32,7 +32,7 @@ export const SubmitUpdateUser = styled.input`
   background-color: rgb(40, 151, 151);
   margin: 24px;
   height: 40px;
-  width: 50%;
+  width: 80%;
   cursor: pointer;
   border-radius: 8px;
   font-size: 24px;
