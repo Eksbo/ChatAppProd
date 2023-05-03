@@ -18,6 +18,7 @@ export const CreateRoom = ({ active, setActive }) => {
   const [body, setBody] = useState("");
   const [value,setValue]=useState()
   const dispatch = useDispatch();
+ 
 
   return (
     <Modal className={active ? "active" : ""}>

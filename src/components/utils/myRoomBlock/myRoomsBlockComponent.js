@@ -45,7 +45,7 @@ export const RoomName = styled.div`
   border-radius: 8px;
   display: flex;
   align-items: center;
-  width: 70%;
+  width:100%;
   padding: 4px;
   font-size: 16px;
   border-radius: 8px;

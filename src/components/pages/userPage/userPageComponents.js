@@ -3,10 +3,15 @@ import styled from "styled-components";
 export const Body = styled.div`
   background-color: rgb(40, 151, 151);
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    height: 100%;
+
+
+  }
 `;
 
 
@@ -46,6 +51,11 @@ box-sizing: border-box;
   padding-bottom: 32px;
   margin: 16px;
   margin-top: -1%;
+  @media (max-width: 768px) {
+    width:80%;
+
+
+  }
 `;
 export const ContentBlock = styled.div`
   width: 60%;

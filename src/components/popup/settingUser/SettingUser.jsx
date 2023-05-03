@@ -9,6 +9,7 @@ import {
   SubmitUpdateUser,
   FormUpdateUser,
   StyledEmail,
+ ErrBlock
 } from "./settingUserComponent";
 import { Modal, ModalContent } from "../Modal";
 import { pathUser } from "../../../store/userSlice";
@@ -26,11 +27,15 @@ export const SettingUser = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [err ,setErr]=useState('')
   const handleSubmit = ({ id, username, email, password }) => {
     if (password === confirmPassword) {
+      setErr('')
       dispatch(pathUser({ id, username, email, password }));
-      setPassword('')
-      setConfirmPassword('')
+
+    }else{
+      setErr('Password and confirm password do not match')
+      return
     }
   };
 
@@ -39,10 +44,12 @@ export const SettingUser = ({
       if (userTest) {
         setUsername(userTest.username);
         setEmail(userTest.email);
+
       }
       if (result) {
         setActive(false);
       }
+
     },
     [userTest, setActive, result]
   );
@@ -56,6 +63,9 @@ export const SettingUser = ({
           onSubmit={event => {
             event.preventDefault();
             handleSubmit({ id, username, email, password });
+            setPassword('')
+            setConfirmPassword('')
+
           }}
         >
           <StyledEmail>
@@ -89,6 +99,7 @@ export const SettingUser = ({
             value={confirmPassword}
             cbFunc={e => setConfirmPassword(e.target.value)}
           />
+          <ErrBlock> {err}</ErrBlock>
 
           <SubmitUpdateUser type={"submit"} value={"Save"} />
         </FormUpdateUser>
