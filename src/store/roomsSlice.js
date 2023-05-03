@@ -64,29 +64,25 @@ export const deleteRoom = createAsyncThunk(
 export const createRoom = createAsyncThunk(
   "rooms/createRooms",
   async ({ topic, body, setActive }) => {
-   
-
     try {
-      if(body)
-  {    const response = await api.post(`/rooms`, {
-        name: topic,
-        description: body,
-      });
-      const newRoom = response?.data
-      setActive(false);
-      console.log(response);
-      return newRoom;
-    }else{
-      const response = await api.post(`/rooms`, {
-        name: topic,
+      if (body) {
+        const response = await api.post(`/rooms`, {
+          name: topic,
+          description: body,
+        });
+        const newRoom = response?.data;
+        setActive(false);
 
-      });
-      const newRoom = response?.data
-      setActive(false);
-      console.log(response);
-      return newRoom;
-    }
- 
+        return newRoom;
+      } else {
+        const response = await api.post(`/rooms`, {
+          name: topic,
+        });
+        const newRoom = response?.data;
+        setActive(false);
+
+        return newRoom;
+      }
     } catch {
       console.error("Error editing room");
     }
@@ -171,7 +167,6 @@ export const roomsSlice = createSlice({
     [getRoom.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.roomCore = action.payload;
-
     },
     [getRoom.rejected]: (state, action) => {
       state.status = "failed";
@@ -183,8 +178,7 @@ export const roomsSlice = createSlice({
     },
     [createRoom.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.rooms = [...state.rooms,action.payload];
-
+      state.rooms = [...state.rooms, action.payload];
     },
     [createRoom.rejected]: (state, action) => {
       state.status = "failed";

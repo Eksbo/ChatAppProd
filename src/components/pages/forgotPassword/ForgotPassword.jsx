@@ -1,5 +1,7 @@
 import React from 'react'
 import { FormField } from '../../elementInput/FormField'
+import {newPasswordUser}from "../../../store/userSlice"
+import { useDispatch } from 'react-redux'
 import{
     Body,
     ForgotBody,
@@ -14,6 +16,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const ForgotPassword = () => {
+  const dispatch =useDispatch()
    const navigate=useNavigate()
     const[email,setEmail]=useState()
   return (
@@ -27,7 +30,12 @@ export const ForgotPassword = () => {
         Enter the email associated with your 
         account and we`ll send an email with your password
         </TextContentBlock>
-        <Form>
+        <Form
+        onSubmit={(event)=>{
+          event.preventDefault()
+          dispatch(newPasswordUser(email))
+        }}
+        >
         <FormField
             type="text"
             label="Email"

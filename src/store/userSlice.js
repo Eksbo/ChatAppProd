@@ -71,6 +71,21 @@ export const deleteUser = createAsyncThunk(
     return data;
   }
 );
+export const newPasswordUser = createAsyncThunk(
+  "users/newPasswordUser",
+  async ({ email}) => {
+      const response = await api.post(`/users/password-reset`, {
+          email: email
+     
+      });
+      const { data } = response;
+
+
+console.log(data);
+  
+      return data;
+  }
+);
 export const userReducer = createSlice({
   name: "users",
   initialState: {

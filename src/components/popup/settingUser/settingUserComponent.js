@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PasswordInput } from "@skbkontur/react-ui";
+
 
 
 export const HCreateRoom = styled.h2`
@@ -113,17 +113,11 @@ export const StyledEmail = styled.p`
      font-weight: 600;
 
 `
-const StyledPasswordInput = styled(PasswordInput)`
-  width: 10%;
-`;
-export const Password = ({ name, value, cbFunc }) => {
-  return (
-    <BlockPassword>
-      <StyledPasswordInput
-        name={name}
-        value={value}
-        onChange={cbFunc}
-      />
-    </BlockPassword>
-  );
-};
+export const ErrBlock=styled.div`
+color:red;
+width:36%;
+margin-left: auto;
+margin-right: auto;
+font-size: 16px;
+
+`

@@ -2,13 +2,10 @@
 export const Logo = ({ width })=>{
 
     return( 
-
-    
-
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+    <svg 
+    version="1.0" xmlns="http://www.w3.org/2000/svg"
   width={`${width}px`}  height={`${(width / 285) * 57}px`} viewBox="0 0 285.000000 57.000000"
      preserveAspectRatio="xMidYMid meet">
-    
     <g 
     transform="translate(0.000000,57.000000) scale(0.100000,-0.100000)"
     fill="#fff" stroke="none">

@@ -29,7 +29,7 @@ export const SettingUserRoom = ({
   useEffect(
     () => {
       if (room) {
-        console.log(room);
+        // console.log(room);
         setTopic(room.name);
         setBody(room.description);
       }
@@ -37,7 +37,7 @@ export const SettingUserRoom = ({
     [room]
   );
   const handleSubmit = async () => {
-    await dispatch(editRooms({ token, id, topic, body }));
+    await dispatch(editRooms({ id, topic, body }));
     await dispatch(fetchRooms());
     setActive(false);
   };

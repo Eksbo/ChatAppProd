@@ -6,7 +6,7 @@ import { MyRoomsBlock } from "../../utils/myRoomBlock/MyRoomsBlock";
 import { PublicRooms } from "../../utils/PublicRooms";
 import { CreateRoom } from "../../popup/createRoom/CreateRoom";
 import { DeleteUser } from "../../popup/deleteUser/DeleteUser";
-import { DeleteRoom } from "../../popup/deleteRoom/DeleteRoom.jsx"
+import { DeleteRoom } from "../../popup/deleteRoom/DeleteRoom.jsx";
 import { SettingUserRoom } from "../../popup/settingUserRoom/SettingUserRoom";
 import { SettingUser } from "../../popup/settingUser/SettingUser";
 import { useState, useEffect } from "react";
@@ -20,7 +20,7 @@ import {
   ChatBody,
   ToolsBlock,
   ContentBlock,
-NameBlock,
+  NameBlock,
   ButtonCreateRoom,
   ButtonSettingUser,
   Block,
@@ -36,12 +36,10 @@ export const UserPage = () => {
   const userTest = useSelector(state => state.users.editUser);
 
   // const user = useSelector(state => state.users.user);
-  const token =localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
-
-  const payload = token ? JSON.parse(atob(token.split(".")[1])) : '';
-  const userId = token ? payload.userId : '';
-
+  const payload = token ? JSON.parse(atob(token.split(".")[1])) : "";
+  const userId = token ? payload.userId : "";
 
   const [createActive, setCreateActive] = useState(false);
   const [settingActive, setSettingActive] = useState(false);
@@ -51,24 +49,20 @@ export const UserPage = () => {
   const [roomId, setRoomId] = useState("");
   const [contentBody, setContentBody] = useState("");
 
-
   useEffect(
     () => {
-
       if (token) {
-        console.log("effectToken",token);
+        // console.log("effectToken", token);
         const id = JSON.parse(atob(token.split(".")[1])).userId;
 
-    
         dispatch(getUser(id));
         dispatch(fetchRooms());
-        dispatch(fetchPublicRooms())
-        
+        dispatch(fetchPublicRooms());
       } else {
         navigate("/login");
       }
     },
-    [token]
+[token]
   );
 
   return (
@@ -85,8 +79,6 @@ export const UserPage = () => {
         </Header>
         <ChatBody>
           <ToolsBlock>
- 
-
             <ButtonCreateRoom
               onClick={() => {
                 setCreateActive(true);
@@ -94,7 +86,7 @@ export const UserPage = () => {
             >
               + Add room
             </ButtonCreateRoom>
-<NameBlock>My rooms</NameBlock>
+            <NameBlock>My rooms</NameBlock>
             <MyRoomsBlock
               setContentBody={setContentBody}
               id={roomId}
@@ -109,12 +101,12 @@ export const UserPage = () => {
             />
           </ToolsBlock>
           <ContentBlock>
-            {contentBody !== "" && <Chat idRoom={contentBody} id={userId}/>}
+            {contentBody !== "" && <Chat idRoom={contentBody} id={userId} />}
           </ContentBlock>
         </ChatBody>
       </Block>
       <CreateRoom
-        token={token}
+
         active={createActive}
         setActive={setCreateActive}
       />
@@ -127,7 +119,6 @@ export const UserPage = () => {
       />
       <SettingUserRoom
         id={roomId}
-        token={token}
         active={settingActive}
         setActive={setSettingActive}
         setDeleteRoomActive={setDeleteRoomActive}
