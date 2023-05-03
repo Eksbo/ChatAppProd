@@ -154,7 +154,9 @@ export const Chat = ({ id, idRoom }) => {
     }
 
     const resetFile = (e) => {
-      e.stopPropagation();
+      if (e) {
+          e.stopPropagation();
+      }
 
       setFileName(FILE_STRING);
 
