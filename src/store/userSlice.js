@@ -2,19 +2,24 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "./api";
 
 export const loginUser = createAsyncThunk(
-    "users/loginUser",
-    async ({ email, password }) => {
-        const response = await api.post(`/users/login`, {
-            email: email,
-            password: password,
-        });
-        const { data } = response;
-        localStorage.setItem("token", `${data.token}`);
-        console.log(localStorage['token']);
+  "users/loginUser",
+  async ({ email, password }) => {
+    try {
+      const response = await api.post(`/users/login`, {
+        email: email,
+        password: password,
+      });
+      const { data } = response;
+      localStorage.setItem("token", `${data.token}`);
+      console.log(localStorage["token"]);
 
-        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-        return data;
+      api.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+      return data;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
+  }
 );
 
 export const registerUser = createAsyncThunk(
@@ -32,26 +37,22 @@ export const registerUser = createAsyncThunk(
 export const pathUser = createAsyncThunk(
   "users/pathUser",
   async ({ id, username, password }) => {
-    if(password)
-{    const response = await api.patch(`/users/${id}`,
-      { 
-        username: username, 
-        password: password 
-      }
-    );
-    const { data } = response;
- console.log(data);
-    return data;
-  }else{
-    const response = await api.patch(`/users/${id}`,
-      { 
-        username: username 
-      }
-    );
-    const { data } = response;
- console.log(data);
-    return data;
-  }
+    if (password) {
+      const response = await api.patch(`/users/${id}`, {
+        username: username,
+        password: password,
+      });
+      const { data } = response;
+      console.log(data);
+      return data;
+    } else {
+      const response = await api.patch(`/users/${id}`, {
+        username: username,
+      });
+      const { data } = response;
+      console.log(data);
+      return data;
+    }
   }
 );
 export const getUser = createAsyncThunk("users/getUser", async (id) => {
@@ -61,29 +62,23 @@ export const getUser = createAsyncThunk("users/getUser", async (id) => {
   return data;
 });
 
-export const deleteUser = createAsyncThunk(
-  "users/deleteUser",
-  async (id) => {
-
-    const response = await api.delete(`/users/${id}`);
-    const { data } = response;
-    console.log(data);
-    return data;
-  }
-);
+export const deleteUser = createAsyncThunk("users/deleteUser", async (id) => {
+  const response = await api.delete(`/users/${id}`);
+  const { data } = response;
+  console.log(data);
+  return data;
+});
 export const newPasswordUser = createAsyncThunk(
   "users/newPasswordUser",
-  async ({ email}) => {
-      const response = await api.post(`/users/password-reset`, {
-          email: email
-     
-      });
-      const { data } = response;
+  async (email) => {
+    const response = await api.post(`/users/password-reset`, {
+      email,
+    });
+    const { data } = response;
 
+    console.log(data);
 
-console.log(data);
-  
-      return data;
+    return data;
   }
 );
 export const userReducer = createSlice({
@@ -95,7 +90,8 @@ export const userReducer = createSlice({
     editUser: null,
     isAuth: null,
     status: null,
-    error: null,
+    error: ''||[],
+    isLoading: false,
   },
   reducers: {
     setUser: (state, action) => {
@@ -111,15 +107,19 @@ export const userReducer = createSlice({
   extraReducers: {
     [loginUser.pending]: (state) => {
       state.status = "loading";
-      state.error = null;
+      state.isLoading = true;
     },
     [loginUser.fulfilled]: (state, action) => {
-      state.status = "succeeded";
-      state.user = action.payload;
-      state.userId = action.payload.user.userId;
-      state.author = action.payload.user.username;
-      state.isAuth = true;
-      // console.log(state.isAuth);
+      state.isLoading = false;
+      try {
+        console.log(action.payload.response.status);
+        state.user = action.payload;
+        state.author = action.payload.user.username;
+        state.isAuth=true;
+      } catch  {
+    //  state.error = action.payload.response.data.error
+console.log(action.payload);
+      }
     },
     [loginUser.rejected]: (state, action) => {
       state.status = "failed";
@@ -127,11 +127,17 @@ export const userReducer = createSlice({
     },
     [registerUser.pending]: (state) => {
       state.status = "loading";
-      state.error = null;
+      state.isLoading = true;
     },
     [registerUser.fulfilled]: (state, action) => {
-      state.status = "succeeded";
-      state.user = action.payload;
+      state.isLoading = false;
+      try{
+        state.status = "succeeded";
+        state.user = action.payload;
+      }catch{
+        // state.error = action.payload.response.data.error
+      }
+     
     },
     [registerUser.rejected]: (state, action) => {
       state.status = "failed";
@@ -156,6 +162,7 @@ export const userReducer = createSlice({
     [pathUser.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.user = action.payload;
+      state.editUser = action.payload;
     },
     [pathUser.rejected]: (state, action) => {
       state.status = "failed";

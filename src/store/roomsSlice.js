@@ -95,6 +95,8 @@ export const roomsSlice = createSlice({
     roomCore: null,
     rooms: [],
     public: [],
+    isPublicRoomLoading: false,
+   publicRoomsError: '',
     idRoom: null,
     room: null,
     status: null,
@@ -150,15 +152,17 @@ export const roomsSlice = createSlice({
     [fetchPublicRooms.pending]: (state) => {
       state.status = "loading";
       state.error = null;
+      state.isPublicRoomLoading=true;
     },
     [fetchPublicRooms.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.public = action.payload;
-      // console.log(action.payload);
+      state.isPublicRoomLoading=false;
     },
     [fetchPublicRooms.rejected]: (state, action) => {
       state.status = "failed";
-      state.error = action.error.message;
+      state.publicRoomsError = action.error.message;
+
     },
     [getRoom.pending]: (state) => {
       state.status = "loading";

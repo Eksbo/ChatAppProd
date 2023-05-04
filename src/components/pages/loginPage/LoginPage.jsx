@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "../../../icon/Logo";
-// import { PasswordInput } from "@skbkontur/react-ui";
 import { useNavigate } from "react-router-dom";
 import {
   Body,
@@ -18,26 +17,35 @@ import {useDispatch, useSelector} from "react-redux";
 import { loginUser } from "../../../store/userSlice";
 import { FormField } from "../../elementInput/FormField";
 
-export const LoginPage = () => {
+export const LoginPage = (props) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [err, setErr] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(state => state.users.isAuth);
+  const error=useSelector(state=>state.users.error)
+  const isLoading=useSelector(state=>state.users.isLoading)
+
+
+
+
 
   const handleLogin = () => {
-    try {
+ 
       dispatch(loginUser({ email, password }))
-    } catch (error) {
-      setErr(error);
-    }}
-
-    useEffect(() => {
-        if (isAuth) {
-            navigate("/user")
+      .then((data)=>{
+        try{
+         if(data.payload.token){
+          navigate('/user')
+         }
         }
-    }, [isAuth]);
+        catch{
+ setErr(error)
+        }
+
+
+    } 
+      )}
 
   return (
     <Body>
@@ -45,7 +53,8 @@ export const LoginPage = () => {
         <Logo width={350} />
         <HInputUserRegister>Log in</HInputUserRegister>
         <ErrBlock>
-          {err}
+          {err}<br />
+          {error&&`${error}`}
         </ErrBlock>
 
         <Form
@@ -75,7 +84,7 @@ export const LoginPage = () => {
           />
                  <FormField
             type="password"
-            label="New password"
+            label="Password"
             regExp={/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]/gm}
             errorText="password no valid"
             value={password}
@@ -83,7 +92,7 @@ export const LoginPage = () => {
           />
 
           <LabelUserLogin>
-            <ButtonUserLogin>Sing in</ButtonUserLogin>
+            <ButtonUserLogin>{isLoading?'Loading...':'Sing in'}</ButtonUserLogin>
           </LabelUserLogin>
         </Form>
         <PInputUserRegister>
@@ -99,7 +108,7 @@ export const LoginPage = () => {
             Sing up
           </Link>
           <Link
-            to="/forgot"
+            to={props.rest?'/forgot-true':'/forgot'}
             style={{ color: "red",
              marginLeft: "40px", 
              textDecoration: "none" ,
