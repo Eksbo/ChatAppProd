@@ -12,7 +12,7 @@ import {
  ErrBlock
 } from "./settingUserComponent";
 import { Modal, ModalContent } from "../Modal";
-import { pathUser } from "../../../store/userSlice";
+import { pathUser ,getUser} from "../../../store/userSlice";
 
 export const SettingUser = ({
   id,
@@ -31,7 +31,10 @@ export const SettingUser = ({
   const handleSubmit = ({ id, username, email, password }) => {
     if (password === confirmPassword) {
       setErr('')
-      dispatch(pathUser({ id, username, email, password }));
+      dispatch(pathUser({ id, username, email, password }))
+      .then(()=>{
+        dispatch(getUser(id));
+      })
 
     }else{
       setErr('Password and confirm password do not match')

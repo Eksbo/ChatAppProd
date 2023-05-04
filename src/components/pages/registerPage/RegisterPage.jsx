@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {Logo} from "../../../icon/Logo";
 import {useNavigate} from "react-router-dom";
 import {FormField} from "../../elementInput/FormField";
+import { useSelector } from "react-redux";
 import {
     Body,
     RegisterBody,
@@ -24,7 +25,7 @@ export const RegisterPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [value, setValue] = useState();
-
+    const error=useSelector(state=>state.users.error)
     const dispatch = useDispatch();
 
     const handleSubmit = event => {
@@ -44,6 +45,9 @@ export const RegisterPage = () => {
                             navigate("/user");
                         });
                 });
+        }
+        if(error){
+            setValue(error)
         }
     };
 

@@ -15,7 +15,8 @@ import { Logo } from '../../../icon/Logo'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const ForgotPassword = () => {
+export const ForgotPassword = (props) => {
+  // const [reset,setReset]=useState(false)
   const dispatch =useDispatch()
    const navigate=useNavigate()
     const[email,setEmail]=useState()
@@ -33,7 +34,13 @@ export const ForgotPassword = () => {
         <Form
         onSubmit={(event)=>{
           event.preventDefault()
-          dispatch(newPasswordUser(email))
+          dispatch(newPasswordUser(email)).then(res=>{
+            const error = res?.error
+            if(!error){
+              props.setRest(true)
+              navigate('/login')
+            }
+            console.log(res)})
         }}
         >
         <FormField
