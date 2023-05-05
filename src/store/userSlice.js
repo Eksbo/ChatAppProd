@@ -25,13 +25,17 @@ export const loginUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   "users/registerUser",
   async ({ email, password, username }) => {
-    const response = await api.post(
-      `/users/register`,
+ try{
+  const response = await api.post(
+    `/users/register`,
 
-      { username: username, email: email, password: password }
-    );
-    const { data } = response;
-    return data;
+    { username: username, email: email, password: password }
+  )
+  const { data } = response;
+  return data;
+ }catch(e){
+ return e
+ }
   }
 );
 export const pathUser = createAsyncThunk(
@@ -58,6 +62,7 @@ export const pathUser = createAsyncThunk(
 export const getUser = createAsyncThunk("users/getUser", async (id) => {
   const response = await api.get(`/users/${id}`);
   const { data } = response;
+  console.log(data);
 
   return data;
 });
@@ -85,12 +90,12 @@ export const userReducer = createSlice({
   name: "users",
   initialState: {
     user: null,
-    userId: null,
+    userId: '',
     author: null,
-    editUser: null,
+    editUser:'',
     isAuth: null,
     status: null,
-    error: ''||[],
+    error: '',
     isLoading: false,
   },
   reducers: {
@@ -111,16 +116,16 @@ export const userReducer = createSlice({
     },
     [loginUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      try {
-        console.log(action.payload.response.status);
+      if (!action.payload.response) {
         state.user = action.payload;
         state.author = action.payload.user.username;
-        state.isAuth=true;
-      } catch  {
-    //  state.error = action.payload.response.data.error
-console.log(action.payload);
+        state.isAuth = true;
+        return;
       }
+
+      state.error = action.payload.response.data.error;
     },
+
     [loginUser.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
@@ -131,43 +136,76 @@ console.log(action.payload);
     },
     [registerUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      try{
+      // console.log(action.payload);
+      if (!action.payload.response) {
         state.status = "succeeded";
         state.user = action.payload;
-      }catch{
-        // state.error = action.payload.response.data.error
+        return;
       }
-     
+ console.log( action.payload);
+      state.error =( typeof action.payload.response.data.error) === 'object'?action.payload.response.data.error.reduce((accum,current)=>{return accum + `${current.message} ,`},""):action.payload.response.data.error;
+      return
     },
-    [registerUser.rejected]: (state, action) => {
-      state.status = "failed";
-      state.error = action.error.message;
-    },
-    [getUser.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
-    },
-    [getUser.fulfilled]: (state, action) => {
+  },
+  [registerUser.rejected]: (state, action) => {
+    state.status = "failed";
+    state.error = action.error.message;
+  },
+  [getUser.pending]: (state) => {
+    state.status = "loading";
+    state.isLoading = true;
+  },
+  [getUser.fulfilled]: (state, action) => {
+    console.log(action.payload);
+
       state.status = "succeeded";
+
       state.editUser = action.payload;
+      console.log(action.payload);
+
+      
     },
-    [getUser.rejected]: (state, action) => {
-      state.status = "failed";
-      state.error = action.error.message;
-    },
-    [pathUser.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
-    },
-    [pathUser.fulfilled]: (state, action) => {
+
+  
+  [getUser.rejected]: (state, action) => {
+    state.status = "failed";
+    state.error = action.error.message;
+  },
+  [pathUser.pending]: (state) => {
+    state.status = "loading";
+    state.isLoading = true;
+  },
+  [pathUser.fulfilled]: (state, action) => {
+    state.isLoading = false;
+    if (!action.payload.response) {
       state.status = "succeeded";
       state.user = action.payload;
       state.editUser = action.payload;
-    },
-    [pathUser.rejected]: (state, action) => {
-      state.status = "failed";
-      state.error = action.error.message;
-    },
+      return;
+    }
+    state.error = action.payload.response.data.error;
+  },
+  [pathUser.rejected]: (state, action) => {
+    state.status = "failed";
+    state.error = action.error.message;
+  },
+  [newPasswordUser.pending]: (state) => {
+    state.status = "loading";
+    state.isLoading = true;
+  },
+  [newPasswordUser.fulfilled]: (state, action) => {
+    state.isLoading = false;
+    if (!action.payload.response) {
+      state.status = "succeeded";
+      console.log(action.payload);
+      return;
+    }
+    state.error = action.payload.response.data.error;
+  },
+  [newPasswordUser.rejected]: (state, action) => {
+    state.isLoading = false;
+    state.status = "failed";
+    state.error = action.error.message;
   },
 });
 export const { setUser, setAuth, setId } = userReducer.actions;
