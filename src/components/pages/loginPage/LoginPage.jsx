@@ -10,43 +10,32 @@ import {
   ButtonUserLogin,
   HInputUserRegister,
   PInputUserRegister,
-  Form,
-
+  Form
 } from "./loginPageComponents";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../store/userSlice";
+import { loginUser, setError } from "../../../store/userSlice";
 import { FormField } from "../../elementInput/FormField";
 
-export const LoginPage = (props) => {
-  const user = useSelector(state => state.users.user);
-  const userTest = useSelector(state => state.users.editUser);
+export const LoginPage = props => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [err, setErr] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector(state => state.users.error)
-  const isLoading = useSelector(state => state.users.isLoading)
-
+  const error = useSelector(state => state.users.error);
+  const isLoading = useSelector(state => state.users.isLoading);
+  dispatch(setError());
   const handleLogin = () => {
-
-    dispatch(loginUser({ email, password }))
-      .then((data) => {
-        try {
-          if (data.payload.token) {
-            console.log(user);
-            console.log(userTest);
-            navigate('/user')
-          }
+    dispatch(loginUser({ email, password })).then(data => {
+      try {
+        if (data.payload.token) {
+          navigate("/user");
         }
-        catch {
-          setErr(error)
-        }
-
-
+      } catch {
+        // setErr(error)
       }
-      )
-  }
+    });
+  };
 
   return (
     <Body>
@@ -54,8 +43,16 @@ export const LoginPage = (props) => {
         <Logo width={350} />
         <HInputUserRegister>Log in</HInputUserRegister>
         <ErrBlock>
-          {err}<br />
-          {error && `${error}`}
+          {err}
+          <br />
+          <div
+            style={{
+              maxHeight: "50px",
+              overflowY: "auto"
+            }}
+          >
+            {error && `${error}`}
+          </div>
         </ErrBlock>
 
         <Form
@@ -65,8 +62,8 @@ export const LoginPage = (props) => {
             if (!email || !password) {
               setEmail("");
               setPassword("");
-              setErr('Some fields are not filled')
-              return
+              setErr("Some fields are not filled");
+              return;
             }
             handleLogin();
             // setEmail("");
@@ -77,9 +74,7 @@ export const LoginPage = (props) => {
             type="text"
             label="Email"
             regExp={/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+\.[a-z0-9-.]+$/gm}
-
             errorText="Email name no valid"
-
             value={email}
             cbFunc={e => setEmail(e.target.value)}
           />
@@ -93,7 +88,7 @@ export const LoginPage = (props) => {
           />
 
           <LabelUserLogin>
-            <ButtonUserLogin>{isLoading ? 'Loading...' : 'Log in'}</ButtonUserLogin>
+            <ButtonUserLogin>{isLoading ? "Loading..." : "Log in"}</ButtonUserLogin>
           </LabelUserLogin>
         </Form>
         <PInputUserRegister>
@@ -103,20 +98,20 @@ export const LoginPage = (props) => {
             style={{
               color: "red",
               marginLeft: "8px",
-              textDecoration: "none",
+              textDecoration: "none"
             }}
           >
             Sing up
           </Link>
           <Link
-            to={props.rest ? '/forgot-true' : '/forgot'}
+            to={props.rest ? "/forgot-true" : "/forgot"}
             style={{
               color: "red",
               marginLeft: "40px",
               textDecoration: "none",
               "@media(max-width: 575px)": {
-                fontSize: '12px',
-                marginLeft: "16px",
+                fontSize: "12px",
+                marginLeft: "16px"
               }
             }}
           >

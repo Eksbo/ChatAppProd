@@ -108,6 +108,9 @@ export const userReducer = createSlice({
     setId: (state, action) => {
       state.userId = action.payload;
     },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
   },
   extraReducers: {
     [loginUser.pending]: (state) => {
@@ -208,5 +211,5 @@ export const userReducer = createSlice({
     state.error = action.error.message;
   },
 });
-export const { setUser, setAuth, setId } = userReducer.actions;
+export const { setUser, setAuth, setId,setError } = userReducer.actions;
 export default userReducer.reducer;

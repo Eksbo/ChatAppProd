@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PasswordInput } from "@skbkontur/react-ui";
+
 
 export const Body = styled.div`
   background-color: rgb(40, 151, 151);
@@ -108,17 +108,6 @@ export const BlockPassword = styled.div`
 width:100%;
 
 `
-const StyledPasswordInput = styled(PasswordInput)`
-  width: 120%;
-`;
-export const Password = ({ name, value, cbFunc }) => {
-  return (
-    <BlockPassword>
-      <StyledPasswordInput
-        name={name}
-        value={value}
-        onChange={cbFunc}
-      />
-    </BlockPassword>
-  );
-};
+
+
+

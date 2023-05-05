@@ -18,7 +18,7 @@ export const FirstPage = () => {
            onClick={()=>{
             navigate('/Login')
            }}
-           > Sing in</BtnLink>
+           > Log in</BtnLink>
 
       
      
