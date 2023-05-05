@@ -11,20 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.j{
-width: 100vh;
-height: 100vh;
-background-color: rgba(0,0,0,0.4);
-position: fixed;
-top: 0;
-left:0;
-font-display: flex;
-align-items: center;
-transform: scale(0);
 
 
-}
-.l{
-  padding-left: 8px;
-white-space: pre-wrap;
-}
+
