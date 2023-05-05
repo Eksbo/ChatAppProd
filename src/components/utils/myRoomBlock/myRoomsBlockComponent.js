@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const BlockMyRooms = styled.div`
-
+box-sizing: border-box;
   width: 88%;
   border: 1px solid white;
   border-radius:16px;
@@ -38,6 +38,9 @@ export const Room = styled.div`
   margin-top: 16px;
   display: flex;
   cursor: pointer;
+	overflow-wrap: break-word;
+  // box-sizing: border-box;
+
 `;
 export const RoomName = styled.div`
   border: 1px solid white;

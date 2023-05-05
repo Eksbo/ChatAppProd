@@ -18,10 +18,12 @@ export const SettingUser = ({
   id,
   active,
   setActive,
-  userTest,
+  user,
   setDeleteActive,
+  setUsName
 }) => {
-  const result = useSelector(state => state.users.user);
+
+console.log(user);
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -33,7 +35,12 @@ export const SettingUser = ({
       setErr('')
       dispatch(pathUser({ id, username, email, password }))
       .then(()=>{
-        dispatch(getUser(id));
+
+        dispatch(getUser(id))
+        .then(()=>{
+          setUsName(username)
+          setActive(false)
+        });
       })
 
     }else{
@@ -44,17 +51,14 @@ export const SettingUser = ({
 
   useEffect(
     () => {
-      if (userTest) {
-        setUsername(userTest.username);
-        setEmail(userTest.email);
+      if (user) {
+        setUsername(user.username);
+        setEmail(user.email);
 
-      }
-      if (result) {
-        setActive(false);
       }
 
     },
-    [userTest, setActive, result]
+    [user, setActive]
   );
 
   return (
@@ -66,8 +70,7 @@ export const SettingUser = ({
           onSubmit={event => {
             event.preventDefault();
             handleSubmit({ id, username, email, password });
-            setPassword('')
-            setConfirmPassword('')
+
 
           }}
         >

@@ -39,18 +39,22 @@ export const RegisterPage = () => {
         } else {
             setValue("");
             dispatch(registerUser({email, password, username}))
-                .then(() => {
-                    dispatch(loginUser({email, password}))
-                        .then(() => {
-                            navigate("/user");
+                .then((res) => {
+           console.log(res);
+                       return res.payload.response.data.error?null:dispatch(loginUser({email, password}))
+              
+                    })
+                        .then((res) => {
+                            console.log(res);
+                           return res ===null? null:navigate("/user")
                         });
-                });
+        
         }
         if(error){
             setValue(error)
         }
     };
-
+// console.log(error);
     return (
         <Body>
             <RegisterBody>
@@ -59,7 +63,14 @@ export const RegisterPage = () => {
 
                 <PInputUserRegister>Create your free account</PInputUserRegister>
                 <ErrBlock>
-                    {value}
+                    
+                    {value}<br/>
+                    <div
+                    style={{
+                        maxHeight:'50px',
+                        overflowY:"auto"
+                    }} >{error && `${error}`}</div>
+                    
                 </ErrBlock>
                 <FormRegister name="userRegister" onSubmit={handleSubmit}>
                     <FormField

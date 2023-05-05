@@ -84,7 +84,7 @@ export const createRoom = createAsyncThunk(
         return newRoom;
       }
     } catch {
-      console.error("Error editing room");
+      console.log("Error editing room");
     }
   }
 );

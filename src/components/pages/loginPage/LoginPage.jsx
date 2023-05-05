@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "../../../icon/Logo";
 import { useNavigate } from "react-router-dom";
@@ -13,39 +13,40 @@ import {
   Form,
 
 } from "./loginPageComponents";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../store/userSlice";
 import { FormField } from "../../elementInput/FormField";
 
 export const LoginPage = (props) => {
+  const user = useSelector(state => state.users.user);
+  const userTest = useSelector(state => state.users.editUser);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [err, setErr] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error=useSelector(state=>state.users.error)
-  const isLoading=useSelector(state=>state.users.isLoading)
-
-
-
-
+  const error = useSelector(state => state.users.error)
+  const isLoading = useSelector(state => state.users.isLoading)
 
   const handleLogin = () => {
- 
-      dispatch(loginUser({ email, password }))
-      .then((data)=>{
-        try{
-         if(data.payload.token){
-          navigate('/user')
-         }
+
+    dispatch(loginUser({ email, password }))
+      .then((data) => {
+        try {
+          if (data.payload.token) {
+            console.log(user);
+            console.log(userTest);
+            navigate('/user')
+          }
         }
-        catch{
- setErr(error)
+        catch {
+          setErr(error)
         }
 
 
-    } 
-      )}
+      }
+      )
+  }
 
   return (
     <Body>
@@ -54,7 +55,7 @@ export const LoginPage = (props) => {
         <HInputUserRegister>Log in</HInputUserRegister>
         <ErrBlock>
           {err}<br />
-          {error&&`${error}`}
+          {error && `${error}`}
         </ErrBlock>
 
         <Form
@@ -64,25 +65,25 @@ export const LoginPage = (props) => {
             if (!email || !password) {
               setEmail("");
               setPassword("");
-             setErr('Some fields are not filled')
-             return
+              setErr('Some fields are not filled')
+              return
             }
             handleLogin();
             // setEmail("");
             // setPassword("");
           }}
         >
-                    <FormField
+          <FormField
             type="text"
             label="Email"
             regExp={/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+\.[a-z0-9-.]+$/gm}
-           
+
             errorText="Email name no valid"
 
             value={email}
             cbFunc={e => setEmail(e.target.value)}
           />
-                 <FormField
+          <FormField
             type="password"
             label="Password"
             regExp={/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]/gm}
@@ -92,7 +93,7 @@ export const LoginPage = (props) => {
           />
 
           <LabelUserLogin>
-            <ButtonUserLogin>{isLoading?'Loading...':'Sing in'}</ButtonUserLogin>
+            <ButtonUserLogin>{isLoading ? 'Loading...' : 'Log in'}</ButtonUserLogin>
           </LabelUserLogin>
         </Form>
         <PInputUserRegister>
@@ -108,14 +109,15 @@ export const LoginPage = (props) => {
             Sing up
           </Link>
           <Link
-            to={props.rest?'/forgot-true':'/forgot'}
-            style={{ color: "red",
-             marginLeft: "40px", 
-             textDecoration: "none" ,
-             "@media(max-width: 575px)": {
-              fontSize:'12px',
-              marginLeft: "16px", 
-            }
+            to={props.rest ? '/forgot-true' : '/forgot'}
+            style={{
+              color: "red",
+              marginLeft: "40px",
+              textDecoration: "none",
+              "@media(max-width: 575px)": {
+                fontSize: '12px',
+                marginLeft: "16px",
+              }
             }}
           >
             Forgot password?

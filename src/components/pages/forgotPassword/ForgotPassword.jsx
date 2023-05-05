@@ -38,7 +38,7 @@ export const ForgotPassword = (props) => {
             const error = res?.error
             if(!error){
               props.setRest(true)
-              navigate('/login')
+              navigate('/forgot-true')
             }
             console.log(res)})
         }}

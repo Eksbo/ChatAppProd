@@ -30,7 +30,7 @@ export const FormField = props => {
           onChange={props.cbFunc}
           onBlur={event => {
             event.preventDefault();
-            if (event.target.value.match(props.regExp) !== null) {
+            if (event.target.value.match(props.regExp) !== null||event.target.value==='') {
                 setError('')
               event.target.style.border = "1px solid white";
             } else {
@@ -57,11 +57,11 @@ export const FormField = props => {
           placeholder={props.placeholder}
           value={props.value}
           onChange={props.cbFunc}
-          onBlur={event => {
+          onInput={event => {
             event.preventDefault();
-            if (event.target.value.match(props.regExp) !== null) {
-                setError('')
+            if (event.target.value.match(props.regExp) !== null||event.target.value==='') {
               event.target.style.border = "1px solid white";
+              setError('')
             } else {
               event.target.style.border = "2px solid red";
               setError(props.errorText)
@@ -87,7 +87,7 @@ export const FormField = props => {
           onChange={props.cbFunc}
          onBlur={event => {
             event.preventDefault();
-            if (event.target.value.match(props.regExp) !== null) {
+            if (event.target.value.match(props.regExp) !== null||event.target.value==='') {
                 setError('')
               event.target.style.border = "1px solid white";
             } else {

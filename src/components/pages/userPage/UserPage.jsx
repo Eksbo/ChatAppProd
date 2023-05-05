@@ -12,7 +12,7 @@ import { SettingUser } from "../../popup/settingUser/SettingUser";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPublicRooms, fetchRooms } from "../../../store/roomsSlice";
-import { getUser } from "../../../store/userSlice";
+import { getUser, setUser } from "../../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -35,7 +35,7 @@ export const UserPage = () => {
   const usersPublic = useSelector(state => state.rooms.public);
   const userTest = useSelector(state => state.users.editUser);
 
-  const user = useSelector(state => state.users.user);
+  // const user = useSelector(state => state.users.user);
   const token = localStorage.getItem("token");
 
   const payload = token ? JSON.parse(atob(token.split(".")[1])) : "";
@@ -49,17 +49,33 @@ export const UserPage = () => {
   const [roomId, setRoomId] = useState("");
   const [contentBody, setContentBody] = useState("");
 
+  const [usName, setUsName] = useState("");
+  const [usEmail, setUsEmail] = useState("");
+
+ const user={
+  email:usEmail,
+  username:usName
+ }
   useEffect(
     () => {
       if (token) {
-        // console.log("effectToken", token);
+
         const id = JSON.parse(atob(token.split(".")[1])).userId;
 
-        dispatch(getUser(id));
-        dispatch(fetchRooms());
-        dispatch(fetchPublicRooms());
+        dispatch(getUser(id))
+        .then((data)=>{
+          setUsEmail(data.payload.email)
+         setUsName(data.payload.username)
+          console.log(user);
+
+        return  dispatch(fetchRooms());
+        })
+        .then(()=>{
+         return dispatch(fetchPublicRooms());
+        })
+
       } else {
-        navigate("/login");
+        return navigate("/login");
       }
     },
 [token]
@@ -72,7 +88,7 @@ export const UserPage = () => {
           <Logo width={"400"} />
           <ButtonSettingUser onClick={() => setSettingUserActive(true)}>
 
-            {userTest ?userTest.username : "Loading..."}
+            {usName ? usName : "Loading..."}
             <UserIcon width={35} />
           </ButtonSettingUser>
 
@@ -112,7 +128,8 @@ export const UserPage = () => {
         setActive={setCreateActive}
       />
       <SettingUser
-        userTest={userTest}
+      setUsName={setUsName}
+        user={user}
         id={userId}
         active={settingUserActive}
         setActive={setSettingUserActive}
