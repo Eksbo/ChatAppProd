@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Modal=styled.div`
 height: 100vh;
 width: 100vw;
@@ -21,5 +20,5 @@ export const ModalContent=styled.div`
 width: 30%;
 padding: 24px;
 border-radius: 24px;
-background-color: rgb(40, 151, 151);
+background-color: #F3EFE9;
 `

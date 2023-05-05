@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const HDeleteUser = styled.h2`
-  color: white;
+  color: #171B18;
   font-size: 16px;
   font-weight: 600;
   margin: 8px;
   margin-left: auto;
 `;
 export const ButtonBackDeleteUser = styled.button`
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #171B18;
+  color: #171B18;
   text-align: center;
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   margin: 24px;
   height: 40px;
   width: 70%;
@@ -20,19 +20,17 @@ export const ButtonBackDeleteUser = styled.button`
   font-size: 24px;
   margin-top: 4vh;
   &&:hover {
-    background-color: #888888;
-    font-weight: 600;
-  }
+   transform: scale(1.05);
+ }
   &&:active {
-    background-color: #d86800;
-    font-weight: 600;
+    background-color: #D86800;
   }
 `;
 export const ButtonDeleteUser = styled.button`
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #171B18;
+  color: #171B18;
   text-align: center;
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   margin: 24px;
   height: 40px;
   width: 70%;
@@ -41,15 +39,12 @@ export const ButtonDeleteUser = styled.button`
   font-size: 24px;
   margin-top: 4vh;
   &&:hover {
-    background-color: #888888;
-    font-weight: 600;
-  }
-  &&:active {
-    background-color: #d86800;
-    font-weight: 600;
-  }
+   transform: scale(1.05);
+ }
+ &&:active {
+   background-color: #D86800;
+ }
 `;
 export const BlockButton = styled.div`
   display:flex;
-`
-;
+`;

@@ -1,24 +1,23 @@
 import styled from "styled-components";
 
 export const BtnLink = styled.button`
-  border: 1px solid white;
+  border: 1px solid #171B18;
   font-size: 20px;
-  color: white;
+  color: #171B18;
   text-align: center;
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   margin: 24px;
   height: 32px;
   width: 80%;
   cursor: pointer;
   border-radius: 8px;
   &&:hover {
-    font-weight: 600;
-    background-color: #888888;
-  }
+   transform: scale(1.05);
+ }
 `;
 export const PLogin = styled.p`
   width: 80%;
-  color: white;
+  color: #171B18;
   font-size: 24px;
   font-weight: 600;
   margin: 24px;
@@ -27,7 +26,7 @@ export const PLogin = styled.p`
   margin-right: auto;
 `;
 export const Body = styled.div`
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -39,7 +38,7 @@ export const Body = styled.div`
 export const LoginBody = styled.div`
   width: 30%;
   border: 1px solid white;
-  color: white;
+  color: #171B18;
   margin-left: auto;
   margin-right: auto;
   border-radius: 24px;
@@ -50,10 +49,10 @@ export const LoginBody = styled.div`
   @media (max-width: 1280px) {
     width: 40%;
   }
-  @media (max-width: 960px) {
+  @media (maxWidth: 960px) {
     width: 50%;
   }
-  @media (max-width: 768px) {
+  @media (max-maxWidth: 768px) {
     width: 70%;
     
   }

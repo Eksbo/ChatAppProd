@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const HCreateRoom = styled.h2`
-  color: white;
-  font-size: 16px;
+  color: #171B18;
+  font-size: 24px;
   font-weight: 600;
   margin: 8px;
   margin-left: auto;
 `;
 export const PCreateRoom = styled.p`
-  color: white;
+  color: #171B18;
   font-size: 16px;
   font-weight: 600;
   margin: 8px;
@@ -30,32 +30,29 @@ export const BodyCreateRoom = styled.textarea`
   padding-left: 16px;
 `;
 export const SubmitCreateRoom = styled.input`
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #171B18;
+  color: #171B18;
   text-align: center;
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   height: 40px;
   width: 80%;
   cursor: pointer;
   border-radius: 8px;
   font-size: 24px;
   margin-top: 4vh;
-
   &&:hover {
-    background-color: #888888;
-    font-weight: 600;
-  }
+   transform: scale(1.05);
+ }
   &&:active {
-    background-color: #d86800;
-    font-weight: 600;
+    background-color: #D86800;
   }
 `;
 export const BackCreateRoom = styled.button`
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #171B18;
+  color: #171B18;
   text-align: center;
-  background-color: rgb(40, 151, 151);
- margin-left:10%;
+  background-color: #F3EFE9;
+  margin-left:10%;
   height: 40px;
   width: 80%;
   cursor: pointer;
@@ -63,13 +60,11 @@ export const BackCreateRoom = styled.button`
   font-size: 24px;
   margin-top: 4vh;
   &&:hover {
-    background-color: #888888;
-    font-weight: 600;
-  }
-  &&:active {
-    background-color: #d86800;
-    font-weight: 600;
-  }
+   transform: scale(1.05);
+ }
+ &&:active {
+   background-color: #D86800;
+ }
 `;
 export const FormCreateRoom = styled.form`
   display: flex;
@@ -77,8 +72,8 @@ export const FormCreateRoom = styled.form`
   align-items: center;
   justify-content: center;
 `;
-export const ErrBlock=styled.div`
-color:red;
+export const ErrBlock = styled.div`
+color: #BF002E;
 width:36%;
 margin-left: auto;
 margin-right: auto;

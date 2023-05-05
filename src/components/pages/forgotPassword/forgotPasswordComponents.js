@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const Body = styled.div`
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -11,8 +11,8 @@ export const Body = styled.div`
 `;
 export const ForgotBody = styled.div`
   width: 30%;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #171B18;
+  color: #171B18;
   margin-left: auto;
   margin-right: auto;
   border-radius: 24px;
@@ -34,16 +34,16 @@ export const ForgotBody = styled.div`
     width: 90%;
   }
 `;
-export const TextBlock=styled.h2`
-color:white;
+export const TextBlock = styled.h2`
+color: #171B18;
 
 `
-export const TextContentBlock=styled.p`
-color:white;
+export const TextContentBlock = styled.p`
+color: #171B18;
 width:70%;
 
 `
-export const Form =styled.form`
+export const Form = styled.form`
 display: flex;
 align-items: center;
 justify-content:start;
@@ -53,10 +53,10 @@ width: 90%;
 
 `
 export const ButtonForgot = styled.button`
-border: 1px solid white;
-color: white;
+border: 1px solid #171B18;
+color: #171B18;
 text-align: center;
-background-color: rgb(40, 151, 151);
+background-color: #F3EFE9;
 margin: 24px;
 height: 40px;
 width: 70%;
@@ -65,19 +65,17 @@ border-radius: 8px;
 font-size: 16px;
 margin-top: 4vh;
 &&:hover {
-  background-color: #888888;
-
-}
+   transform: scale(1.05);
+ }
 &&:active {
-  background-color: #d86800;
-
+  background-color: #D86800ж
 }
 `;
 export const BackForgot = styled.button`
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #171B18;
+  color: #171B18;
   text-align: center;
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   margin: 24px;
   height: 40px;
   width: 63%;
@@ -86,11 +84,9 @@ export const BackForgot = styled.button`
   font-size: 24px;
   margin-top: 4vh;
   &&:hover {
-    background-color: #888888;
-
-  }
+   transform: scale(1.05);
+ }
   &&:active {
-    background-color: #d86800;
-
+    background-color: #D86800;
   }
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PasswordInput } from "@skbkontur/react-ui";
 export const Body = styled.div`
-  background-color: rgb(40, 151, 151);
+  background-color: #F3EFE9;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -12,8 +12,8 @@ export const Body = styled.div`
 `;
 export const LoginBody = styled.div`
   width: 30%;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #171B18;
+  color: #171B18;
   margin-left: auto;
   margin-right: auto;
   border-radius: 24px;
@@ -36,7 +36,7 @@ export const LoginBody = styled.div`
   }
 `;
 export const PInputUserLogin = styled.p`
-  color: white;
+  color: #171B18;
   font-size: 16px;
   font-weight: 600;
   margin: 8px;
@@ -57,10 +57,10 @@ export const LabelUserLogin = styled.label`
 `;
 
 export const ButtonUserLogin = styled.button`
-border: 1px solid white;
-color: white;
+border: 1px solid #171B18;
+color: #171B18;
 text-align: center;
-background-color: rgb(40, 151, 151);
+background-color: #F3EFE9;
 margin: 24px;
 height: 40px;
 width: 70%;
@@ -69,36 +69,34 @@ border-radius: 8px;
 font-size: 24px;
 margin-top: 4vh;
 &&:hover {
-  background-color: #888888;
-  font-weight: 600;
-}
+   transform: scale(1.05);
+ }
 &&:active {
-  background-color: #d86800;
-  font-weight: 600;
+  background-color: #D86800;
 }
 `;
-export const ErrBlock=styled.div`
-color:red;
-width:36%;
+export const ErrBlock = styled.div`
+color: #BF002E;
+width: 36%;
 margin-left: auto;
 margin-right: auto;
 font-size: 16px;
 
 `
 export const PInputUserRegister = styled.p`
-color: white;
+color: #171B18;
 font-size: 16px;
 font-weight: 600;
 margin: 8px;
 text-align: left;
 `;
 export const HInputUserRegister = styled.p`
-color: white;
+color: #171B18;
 font-size: 36px;
 font-weight: 600;
 margin: 8px;
 `;
-export const Form =styled.form`
+export const Form = styled.form`
 display: flex;
 align-items: center;
 justify-content:start;
@@ -113,14 +111,14 @@ margin-right:auto;
 
 `
 
-export const Password=({name,value,cbFunc})=>{
-  return (
-   <BlockPassword>
+export const Password = ({ name, value, cbFunc }) => {
+   return (
+      <BlockPassword>
          <PasswordInput
-             name={name}
-             value={value}
-             onChange={cbFunc}
-           />
-   </BlockPassword>
-  )
- }
+            name={name}
+            value={value}
+            onChange={cbFunc}
+         />
+      </BlockPassword>
+   )
+}

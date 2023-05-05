@@ -3,13 +3,14 @@ import styled from "styled-components";
 export const InputStyle = styled.input`
   width: 90%;
   font-size: 24px;
+  padding: 5px;
   font-weight: 600;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(40, 151, 151);
-  border: 1px solid white;
+  background-color: #F3EFE9;
+  border: 1px solid #171B18;
   border-radius: 8px;
-  color: white;
+  color: #171B18;
 `;
 export const LabelStyle = styled.label`
   display: flex;
@@ -18,19 +19,19 @@ export const LabelStyle = styled.label`
 `;
 export const NameBlockStyle = styled.h2`
   font-size: 16px;
-  color: white;
+  color: #171B18;
 `;
 export const ErrorBlockStyle = styled.p`
   width: 90%;
-  color: red;
+  color: #BF002E;
 `;
 export const ButtonPasswordStyle = styled.button`
   width: 20%;
   height: 100%;
-  background-color: rgb(40, 151, 151);
-  border: 1px solid white;
+  background-color: #F3EFE9;
+  border: 1px solid #171B18;
   border-radius: 8px;
-  color: white;
+  color: #171B18;
 `;
 export const BlockPasswordStyle = styled.div`
   width: 80%;
@@ -38,7 +39,6 @@ export const BlockPasswordStyle = styled.div`
   margin-right: auto;
   display: flex;
   justify-content: center;
-
   align-items: center;
 `;
 export const DescriptionRoom = styled.textarea`
@@ -48,11 +48,9 @@ export const DescriptionRoom = styled.textarea`
   font-weight: 600;
   margin-left: 16px;
   padding-left: 16px;
-  background-color: rgb(40, 151, 151);
-border: 1px solid white;
+  background-color: #F3EFE9;
+border: 1px solid #171B18;
 border-radius: 8px;
-color:white;
-
-   
+color: #171B18;  
   }
 `;
