@@ -14,12 +14,32 @@ import { Modal, ModalContent } from "../Modal";
 
 
 export const CreateRoom = ({ active, setActive }) => {
+   function containsCyrillic(text) {
+      const cyrillicPattern = /[\u0400-\u04FF]/;
+      return cyrillicPattern.test(text);
+    }
    const [topic, setTopic] = useState("");
    const [body, setBody] = useState("");
    const [value, setValue] = useState()
    const dispatch = useDispatch();
    const error = useSelector(state => state.users.error)
+ const handleCreate=()=>{
+ if(containsCyrillic(topic)){
+   return
+ };
 
+   if (!topic) {
+      setValue("Some fields are not filled");
+      return
+   } 
+   if(!body){
+      dispatch(createRoom({ topic, setActive }));
+      setTopic("");
+      setBody("");
+
+      return
+   }
+ }
 
 
    return (
@@ -34,38 +54,26 @@ export const CreateRoom = ({ active, setActive }) => {
             <FormCreateRoom
                onSubmit={event => {
                   event.preventDefault();
-                  if (!topic) {
-                     console.log(topic);
-                     setValue("Some fields are not filled");
-                     return
-                  } else {
-                     dispatch(createRoom({ topic, body, setActive }));
-                     setTopic("");
-                     setBody("");
-                     return
-                  }
+                  handleCreate()
                }}
             >
                <FormField
                   type={"text"}
                   value={topic}
                   label="Room name"
-                  regExp={
-                    /^ [a-zA-Z0-9!@#$%^&*]+$/gm
-                  }
-                  
-                  cbFunc={(event )=> {setTopic(event.target.value)
-                      console.log(topic)
-                      console.log(typeof topic)
+                  // regExp={
+                  //   /^ [a-zA-Z0-9!@#$%^&*]+$/gm
+                  // }
+                  cbFunc={(event )=> {
+                     setTopic(event.target.value)
+              
                      }
                   }
                />
                <FormField
                   type={"textarea"}
                   value={body}
-                  regExp={
-                     /^ [a-zA-Z0-9!@#$%^&*]+$/gm
-                  }
+         
                   label="Description (optional)"
                   cbFunc={event => setBody(event.target.value)}
                />
