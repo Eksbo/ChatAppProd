@@ -65,9 +65,7 @@ export const CreateRoom = ({ active, setActive }) => {
                   type={"text"}
                   value={topic}
                   label="Room name"
-                  // regExp={
-                  //   /^ [a-zA-Z0-9!@#$%^&*]+$/gm
-                  // }
+   
                   cbFunc={(event )=> {
                      setTopic(event.target.value)
               
