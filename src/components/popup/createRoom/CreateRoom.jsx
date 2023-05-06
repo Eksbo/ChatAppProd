@@ -38,6 +38,10 @@ export const CreateRoom = ({ active, setActive }) => {
       setBody("");
 
       return
+   }else{
+      dispatch(createRoom({ topic,body, setActive }));
+      setTopic("");
+      setBody("");
    }
  }
 
