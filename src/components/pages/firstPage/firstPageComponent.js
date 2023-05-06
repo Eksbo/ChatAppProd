@@ -37,7 +37,7 @@ export const Body = styled.div`
 `;
 export const LoginBody = styled.div`
   width: 30%;
-  border: 1px solid white;
+  border: 1px solid #171B18;
   color: #171B18;
   margin-left: auto;
   margin-right: auto;
