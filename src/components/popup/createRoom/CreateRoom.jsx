@@ -29,12 +29,14 @@ export const CreateRoom = ({ active, setActive }) => {
                onSubmit={event => {
                   event.preventDefault();
                   if (!topic) {
+                     console.log(topic);
                      setValue("Some fields are not filled");
                      return
                   } else {
                      dispatch(createRoom({ topic, body, setActive }));
                      setTopic("");
                      setBody("");
+                     return
                   }
                }}
             >
