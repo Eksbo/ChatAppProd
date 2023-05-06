@@ -41,7 +41,9 @@ export const RegisterPage = () => {
          dispatch(registerUser({ email, password, username }))
             .then((res) => {
                console.log(res);
-               return res.payload.response.data.error ? null : dispatch(loginUser({ email, password }))
+               return res.payload.response?.data?.error ? null : dispatch(loginUser({ email, password }))
+
+              //  return res.payload.response.data.error ? null : dispatch(loginUser({ email, password }))
 
             })
             .then((res) => {
