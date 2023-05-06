@@ -18,7 +18,7 @@ export const Logo = ({ width }) => {
          preserveAspectRatio="xMidYMid meet">
          <g
             transform="translate(0.000000,57.000000) scale(0.100000,-0.100000)"
-            fill="#fff" stroke="none">
+            fill="#171B18" stroke="none">
             <path d="M226 389 c-48 -29 -90 -57 -92 -64 -3 -7 -4 -29 -2 -48 l3 -36 88 51
     c101 58 83 59 215 -17 l62 -36 0 45 c0 50 -1 51 -130 124 l-56 32 -88 -51z"/>
             <path d="M672 370 c-89 -54 -98 -185 -16 -249 34 -27 89 -37 121 -22 18 8 29
