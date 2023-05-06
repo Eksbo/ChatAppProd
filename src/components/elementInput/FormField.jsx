@@ -28,7 +28,7 @@ export const FormField = props => {
                value={props.value}
                placeholder={props.placeholder}
                onChange={props.cbFunc}
-               onBlur={event => {
+               onInput={event => {
                   event.preventDefault();
                   if (event.target.value.match(props.regExp) !== null || event.target.value === '') {
                      setError('')
