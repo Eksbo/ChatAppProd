@@ -73,7 +73,8 @@ export const DeleteUserButton = styled.button`
   width: 40%;
   cursor: pointer;
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 18px;
+	word-break: break-word;
   margin-top: 4vh;
   &&:hover {
    transform: scale(1.05);

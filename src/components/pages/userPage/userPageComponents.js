@@ -93,11 +93,12 @@ export const ButtonCreateRoom = styled.button`
 
 export const ButtonSettingUser = styled.button`
 @media (min-width: 768px) {
-   position: absolute;
-   width: 15%;
-   right: 16%;
-}
-   height: 40px;
+	right: 16%;
+ }
+ 	right: 25%;
+	position: absolute;
+	width: 15%;
+	height: 40px;
    border: 1px solid #171B18;
    border-radius: 8px;
    color: #171B18;
@@ -116,6 +117,9 @@ export const ButtonSettingUser = styled.button`
    &&:active {
       background-color: #D86800;
    }
+	 @media (max-width: 768px) {
+		font-size: 15px;
+	 }
 `;
 
 export const Block = styled.div`

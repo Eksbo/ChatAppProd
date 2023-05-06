@@ -114,7 +114,7 @@ export const LoginPage = (props) => {
                      color: "#BF002E",
                      marginLeft: "40px",
                      textDecoration: "none",
-                     "@media(max-width: 575px)": {
+                     "@media(maxWidth: 575px)": {
                         fontSize: '12px',
                         marginLeft: "16px",
                      }
