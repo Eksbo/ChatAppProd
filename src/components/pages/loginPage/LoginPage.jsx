@@ -106,7 +106,7 @@ export const LoginPage = (props) => {
                      textDecoration: "none",
                   }}
                >
-                  Sing up
+                  Sign up
                </Link>
                <Link
                   to={props.rest ? '/forgot-true' : '/forgot'}

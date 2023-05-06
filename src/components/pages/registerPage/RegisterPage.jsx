@@ -61,9 +61,7 @@ export const RegisterPage = () => {
       <Body>
          <RegisterBody>
             <Logo width={350} />
-            <HInputUserRegister>Create Account</HInputUserRegister>
-
-            <PInputUserRegister>Create your free account</PInputUserRegister>
+            <HInputUserRegister>Create your free account</HInputUserRegister>
             <ErrBlock>
 
                {value}<br />
