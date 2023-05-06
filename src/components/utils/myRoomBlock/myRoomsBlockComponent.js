@@ -49,6 +49,7 @@ export const RoomName = styled.div`
   padding: 4px;
   font-size: 16px;
   border-radius: 8px;
+	word-break: break-word;
   &&:hover {
    transform: scale(1.05);
  }
