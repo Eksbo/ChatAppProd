@@ -70,11 +70,13 @@ export const createRoom = createAsyncThunk(
           name: topic,
           description: body,
         });
+        
         const newRoom = response?.data;
         setActive(false);
 
         return newRoom;
-      } else {
+      } 
+      else if( !body) {
         const response = await api.post(`/rooms`, {
           name: topic,
         });
@@ -83,8 +85,11 @@ export const createRoom = createAsyncThunk(
 
         return newRoom;
       }
-    } catch {
-      console.log("Error editing room");
+      else if(!topic){
+        return
+      }
+    } catch (e){
+      return e
     }
   }
 );
@@ -169,8 +174,14 @@ export const roomsSlice = createSlice({
       state.error = null;
     },
     [getRoom.fulfilled]: (state, action) => {
-      state.status = "succeeded";
-      state.roomCore = action.payload;
+      if (!action.payload.response) {
+        state.status = "succeeded";
+        state.roomCore = action.payload;
+        return
+      }
+      console.log( action.payload);
+      state.error =( typeof action.payload.response.data.error) === 'object'?action.payload.response.data.error.reduce((accum,current)=>{return accum + `${current.message} ,`},""):action.payload.response.data.error;
+      return
     },
     [getRoom.rejected]: (state, action) => {
       state.status = "failed";
