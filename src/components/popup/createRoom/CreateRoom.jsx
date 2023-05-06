@@ -8,7 +8,7 @@ import {
    ErrBlock
 } from "./createRoomComponent";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { createRoom } from "../../../store/roomsSlice";
 import { Modal, ModalContent } from "../Modal";
 
@@ -18,13 +18,19 @@ export const CreateRoom = ({ active, setActive }) => {
    const [body, setBody] = useState("");
    const [value, setValue] = useState()
    const dispatch = useDispatch();
+   const error = useSelector(state => state.users.error)
+
 
 
    return (
       <Modal className={active ? "active" : ""}>
          <ModalContent>
             <HCreateRoom>Create a new room</HCreateRoom>
-
+            <div
+                  style={{
+                     maxHeight: '50px',
+                     overflowY: "auto"
+                  }} >{error && `${error}`}</div>
             <FormCreateRoom
                onSubmit={event => {
                   event.preventDefault();
@@ -44,11 +50,22 @@ export const CreateRoom = ({ active, setActive }) => {
                   type={"text"}
                   value={topic}
                   label="Room name"
-                  cbFunc={event => setTopic(event.target.value)}
+                  regExp={
+                    /^ [a-zA-Z0-9!@#$%^&*]+$/gm
+                  }
+                  
+                  cbFunc={(event )=> {setTopic(event.target.value)
+                      console.log(topic)
+                      console.log(typeof topic)
+                     }
+                  }
                />
                <FormField
                   type={"textarea"}
                   value={body}
+                  regExp={
+                     /^ [a-zA-Z0-9!@#$%^&*]+$/gm
+                  }
                   label="Description (optional)"
                   cbFunc={event => setBody(event.target.value)}
                />
