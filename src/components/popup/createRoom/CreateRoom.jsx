@@ -24,21 +24,18 @@ export const CreateRoom = ({ active, setActive }) => {
    const dispatch = useDispatch();
    const error = useSelector(state => state.users.error)
  const handleCreate=()=>{
- if(containsCyrillic(topic)){
-   return
- };
+ // if(containsCyrillic(topic)){
+ //   return
+ // };
 
    if (!topic) {
       setValue("Some fields are not filled");
       return
-   } 
-   if(!body){
-      dispatch(createRoom({ topic, setActive }));
-      setTopic("");
-      setBody("");
-
-      return
    }
+
+     dispatch(createRoom({ topic, body, setActive }));
+     setTopic("");
+     setBody("");
  }
 
 
@@ -82,6 +79,8 @@ export const CreateRoom = ({ active, setActive }) => {
             </FormCreateRoom>
             <BackCreateRoom
                onClick={() => {
+                   setTopic("");
+                   setBody("");
                   setActive(false);
                }}
             >
